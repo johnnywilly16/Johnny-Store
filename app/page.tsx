@@ -277,20 +277,20 @@ export default function Home() {
           viewport={{ once: true }}
           className="relative z-10 max-w-7xl mx-auto"
         >
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 sm:p-12 border border-white/20 shadow-2xl">
+          <div className="bg-white/20 dark:bg-white/10 backdrop-blur-lg rounded-3xl p-6 sm:p-8 md:p-12 border border-white/20 shadow-2xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="text-center mb-8 sm:mb-12"
             >
-              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
                 Pronto para uma Experiência <br className="hidden sm:block" />
                 <span className="bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent">
                   Premium de Compras?
                 </span>
               </h2>
-              <p className="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto">
+              <p className="text-lg sm:text-xl md:text-2xl text-white max-w-3xl mx-auto">
                 Junte-se a milhares de clientes satisfeitos e descubra por que somos a escolha premium para produtos exclusivos.
               </p>
             </motion.div>
@@ -300,7 +300,7 @@ export default function Home() {
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.2)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-8 py-4 bg-white text-primary-600 rounded-full font-semibold flex items-center gap-2 hover:bg-gray-50 transition-colors shadow-xl text-lg"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-primary-600 rounded-full font-semibold flex items-center gap-2 hover:bg-gray-50 transition-colors shadow-xl text-base sm:text-lg"
                 >
                   Entre em Contato
                   <motion.div
@@ -315,7 +315,8 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-semibold flex items-center gap-2 hover:bg-white/10 transition-colors text-lg"
+                onClick={handleExploreClick}
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-white text-white rounded-full font-semibold flex items-center gap-2 hover:bg-white/10 transition-colors text-base sm:text-lg"
               >
                 Ver Produtos
                 <FaShoppingBag />
@@ -326,30 +327,30 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center"
+              className="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-center"
             >
-              <div className="bg-white/5 backdrop-blur rounded-xl p-6">
-                <div className="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FaShoppingBag className="text-white text-xl" />
+              <div className="bg-white/10 backdrop-blur rounded-xl p-4 sm:p-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <FaShoppingBag className="text-white text-lg sm:text-xl" />
                 </div>
-                <h3 className="text-white font-semibold mb-2">Produtos Premium</h3>
-                <p className="text-white/80 text-sm">Seleção exclusiva de produtos de alta qualidade</p>
+                <h3 className="text-white font-semibold mb-2 text-base sm:text-lg">Produtos Premium</h3>
+                <p className="text-white/90 text-sm">Seleção exclusiva de produtos de alta qualidade</p>
               </div>
               
-              <div className="bg-white/5 backdrop-blur rounded-xl p-6">
-                <div className="w-12 h-12 bg-secondary-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FaTruck className="text-white text-xl" />
+              <div className="bg-white/10 backdrop-blur rounded-xl p-4 sm:p-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-secondary-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <FaTruck className="text-white text-lg sm:text-xl" />
                 </div>
-                <h3 className="text-white font-semibold mb-2">Entrega Rápida</h3>
-                <p className="text-white/80 text-sm">Envio expresso para todo o Brasil</p>
+                <h3 className="text-white font-semibold mb-2 text-base sm:text-lg">Entrega Rápida</h3>
+                <p className="text-white/90 text-sm">Envio expresso para todo o Brasil</p>
               </div>
               
-              <div className="bg-white/5 backdrop-blur rounded-xl p-6">
-                <div className="w-12 h-12 bg-primary-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FaHeart className="text-white text-xl" />
+              <div className="bg-white/10 backdrop-blur rounded-xl p-4 sm:p-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-700 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <FaHeart className="text-white text-lg sm:text-xl" />
                 </div>
-                <h3 className="text-white font-semibold mb-2">Satisfação Garantida</h3>
-                <p className="text-white/80 text-sm">Qualidade e atendimento excepcional</p>
+                <h3 className="text-white font-semibold mb-2 text-base sm:text-lg">Satisfação Garantida</h3>
+                <p className="text-white/90 text-sm">Qualidade e atendimento excepcional</p>
               </div>
             </motion.div>
           </div>
