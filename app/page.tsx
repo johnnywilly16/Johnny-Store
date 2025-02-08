@@ -26,15 +26,6 @@ export default function Home() {
   const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, -150]), springConfig)
   const opacity = useSpring(useTransform(scrollYProgress, [0, 0.5], [1, 0]), springConfig)
 
-  const filteredProducts = useMemo(() => {
-    const searchTermLower = searchTerm.toLowerCase().trim()
-    if (!searchTermLower) return products
-    return products.filter(product => {
-      const searchableText = `${product.name} ${product.description} ${product.category}`.toLowerCase()
-      return searchableText.includes(searchTermLower)
-    })
-  }, [searchTerm])
-
   const handleFavoriteClick = (product: typeof products[0], event: React.MouseEvent) => {
     event.stopPropagation()
     if (isFavorite(product.id)) {

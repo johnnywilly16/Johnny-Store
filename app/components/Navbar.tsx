@@ -29,13 +29,6 @@ export default function Navbar() {
     { href: '/contato', icon: <FaEnvelope className="text-xl" />, text: 'Contato' },
   ]
 
-  const scrollToProducts = () => {
-    const productsSection = document.getElementById('products')
-    if (productsSection) {
-      productsSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
   if (!mounted) return null
 
   return (

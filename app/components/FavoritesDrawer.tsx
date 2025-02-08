@@ -7,6 +7,14 @@ import { useCart } from '../contexts/CartContext'
 import Toast from './Toast'
 import { useState } from 'react'
 
+type Product = {
+  id: number
+  name: string
+  price: number
+  description: string
+  rating: number
+}
+
 type FavoritesDrawerProps = {
   isOpen: boolean
   onClose: () => void
@@ -19,7 +27,7 @@ export default function FavoritesDrawer({ isOpen, onClose }: FavoritesDrawerProp
   const [toastMessage, setToastMessage] = useState('')
   const [toastVariant, setToastVariant] = useState<'success' | 'error'>('success')
 
-  const handleAddToCart = (product: any) => {
+  const handleAddToCart = (product: Product) => {
     addToCart(product)
     setToastMessage('Produto adicionado ao carrinho!')
     setToastVariant('success')
