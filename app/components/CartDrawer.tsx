@@ -71,42 +71,42 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   Seu carrinho está vazio
                 </p>
               ) : (
-                <div className="space-y-3 sm:space-y-4">
+                <div className="space-y-4 sm:space-y-4">
                   {items.map(item => (
                     <div
                       key={item.id}
-                      className="flex items-center gap-3 sm:gap-4 bg-gray-50 dark:bg-dark-accent p-3 sm:p-4 rounded-lg"
+                      className="flex items-center gap-4 sm:gap-4 bg-white dark:bg-dark-accent p-4 sm:p-4 rounded-xl shadow-md"
                     >
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-sm sm:text-base text-gray-800 dark:text-dark-text">
+                      <div className="flex-1 space-y-2">
+                        <h3 className="font-bold text-base sm:text-base text-gray-800 dark:text-white">
                           {item.name}
                         </h3>
-                        <p className="text-sm sm:text-base text-primary-600 dark:text-primary-400 font-medium">
+                        <p className="text-base sm:text-base text-primary-600 dark:text-primary-400 font-bold">
                           R$ {item.price.toFixed(2)}
                         </p>
                       </div>
 
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-3">
                         <button
                           onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
-                          className="p-1 sm:p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                          className="p-2 sm:p-2 bg-gray-100 dark:bg-dark-primary text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-dark-accent rounded-lg transition-colors"
                         >
-                          <FaMinus className="text-xs sm:text-sm" />
+                          <FaMinus className="text-sm sm:text-sm" />
                         </button>
-                        <span className="w-6 sm:w-8 text-center text-sm sm:text-base text-gray-800 dark:text-dark-text">
+                        <span className="w-8 sm:w-8 text-center text-base sm:text-base font-bold text-gray-800 dark:text-white">
                           {item.quantity}
                         </span>
                         <button
                           onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
-                          className="p-1 sm:p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                          className="p-2 sm:p-2 bg-gray-100 dark:bg-dark-primary text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-dark-accent rounded-lg transition-colors"
                         >
-                          <FaPlus className="text-xs sm:text-sm" />
+                          <FaPlus className="text-sm sm:text-sm" />
                         </button>
                         <button
                           onClick={() => handleRemoveFromCart(item.id)}
-                          className="p-1.5 sm:p-2 text-red-500 hover:text-red-700"
+                          className="p-2 sm:p-2 bg-red-100 dark:bg-red-900/30 text-red-500 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 rounded-lg transition-colors"
                         >
-                          <FaTrash className="text-xs sm:text-sm" />
+                          <FaTrash className="text-sm sm:text-sm" />
                         </button>
                       </div>
                     </div>

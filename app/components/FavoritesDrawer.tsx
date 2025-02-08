@@ -88,43 +88,43 @@ export default function FavoritesDrawer({ isOpen, onClose }: FavoritesDrawerProp
                   </p>
                 </div>
               ) : (
-                <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+                <div className="p-4 sm:p-6 space-y-4 sm:space-y-4">
                   {favorites.map((product) => (
                     <div
                       key={product.id}
-                      className="bg-gray-50 dark:bg-dark-accent rounded-xl p-3 sm:p-4 flex gap-3 sm:gap-4"
+                      className="bg-white dark:bg-dark-accent rounded-xl p-4 sm:p-4 flex gap-4 sm:gap-4 shadow-md"
                     >
-                      <div className="w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-dark-accent dark:to-dark-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                        <FaShoppingCart className="text-xl sm:text-2xl text-primary-600 dark:text-primary-400" />
+                      <div className="w-20 sm:w-20 h-20 sm:h-20 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-dark-accent dark:to-dark-primary rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                        <FaShoppingCart className="text-2xl sm:text-2xl text-primary-600 dark:text-primary-400" />
                       </div>
 
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-sm sm:text-base text-gray-800 dark:text-dark-text truncate">
+                      <div className="flex-1 min-w-0 space-y-2">
+                        <h3 className="font-bold text-base sm:text-base text-gray-800 dark:text-white truncate">
                           {product.name}
                         </h3>
-                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2 line-clamp-1">
+                        <p className="text-sm sm:text-sm text-gray-600 dark:text-gray-300 line-clamp-1">
                           {product.description}
                         </p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm sm:text-base text-primary-600 dark:text-primary-400 font-semibold">
+                        <div className="flex items-center justify-between pt-1">
+                          <span className="text-base sm:text-base text-primary-600 dark:text-primary-400 font-bold">
                             R$ {product.price.toFixed(2)}
                           </span>
-                          <div className="flex gap-2">
+                          <div className="flex gap-3">
                             <motion.button
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                               onClick={() => handleAddToCart(product)}
-                              className="p-1.5 sm:p-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+                              className="p-2 sm:p-2 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-200 dark:hover:bg-primary-900/50 transition-colors"
                             >
-                              <FaShoppingCart className="text-xs sm:text-sm" />
+                              <FaShoppingCart className="text-sm sm:text-sm" />
                             </motion.button>
                             <motion.button
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                               onClick={() => handleRemoveFromFavorites(product.id)}
-                              className="p-1.5 sm:p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                              className="p-2 sm:p-2 bg-red-100 dark:bg-red-900/30 text-red-500 dark:text-red-400 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors"
                             >
-                              <FaTrash className="text-xs sm:text-sm" />
+                              <FaTrash className="text-sm sm:text-sm" />
                             </motion.button>
                           </div>
                         </div>
