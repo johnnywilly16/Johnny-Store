@@ -141,12 +141,12 @@ export default function Navbar() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center gap-3 p-4 bg-white dark:bg-dark-secondary rounded-2xl hover:bg-primary-50 dark:hover:bg-dark-primary transition-colors cursor-pointer shadow-soft"
+                      className="flex items-center gap-4 p-5 bg-primary-50/80 dark:bg-dark-secondary rounded-2xl hover:bg-primary-100 dark:hover:bg-dark-primary transition-colors cursor-pointer shadow-soft"
                     >
-                      <div className="w-10 h-10 bg-primary-100 dark:bg-primary-900/20 rounded-xl flex items-center justify-center text-primary-600 dark:text-primary-400">
+                      <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/20 rounded-xl flex items-center justify-center text-primary-600 dark:text-primary-400">
                         {item.icon}
                       </div>
-                      <span className="font-medium text-gray-800 dark:text-dark-text">
+                      <span className="font-medium text-gray-800 dark:text-dark-text text-lg">
                         {item.text}
                       </span>
                     </motion.div>
