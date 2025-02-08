@@ -6,14 +6,9 @@ import { useFavorites } from '../contexts/FavoritesContext'
 import { useCart } from '../contexts/CartContext'
 import Toast from './Toast'
 import { useState } from 'react'
+import { products } from '../data/products'
 
-type Product = {
-  id: number
-  name: string
-  price: number
-  description: string
-  rating: number
-}
+type Product = typeof products[0]
 
 type FavoritesDrawerProps = {
   isOpen: boolean

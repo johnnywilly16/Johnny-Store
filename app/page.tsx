@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import Link from 'next/link'
 import { FaShoppingCart, FaSearch, FaStar, FaArrowRight, FaHeart, FaShoppingBag, FaTruck } from 'react-icons/fa'
-import { useState, useRef, useMemo } from 'react'
+import { useState, useRef } from 'react'
 import ProductModal from './components/ProductModal'
 import { products } from './data/products'
 import { useCart } from './contexts/CartContext'
@@ -56,7 +56,7 @@ export default function Home() {
     }
   }
 
-  const scrollToProducts = () => {
+  const handleExploreClick = () => {
     const productsSection = document.getElementById('products')
     if (productsSection) {
       productsSection.scrollIntoView({ behavior: 'smooth' })
@@ -100,7 +100,7 @@ export default function Home() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={scrollToProducts}
+              onClick={handleExploreClick}
               className="w-full sm:w-auto px-8 py-4 bg-primary-600 text-white rounded-full font-semibold flex items-center justify-center gap-2 hover:bg-primary-700 transition-colors shadow-soft"
             >
               Explorar Coleção
@@ -167,76 +167,83 @@ export default function Home() {
             animate="visible"
             className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8"
           >
-            {products.slice(0, 9).map((produto) => (
-              <motion.div
-                key={produto.id}
-                layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="bg-white dark:bg-dark-secondary rounded-2xl p-4 sm:p-6 shadow-soft-xl hover:shadow-2xl transition-shadow"
-              >
-                <div className="relative group">
-                  <div className="w-full aspect-square rounded-xl mb-4 sm:mb-6 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-dark-accent dark:to-dark-primary flex items-center justify-center overflow-hidden">
-                    <motion.div
+            {products
+              .filter(product => 
+                !searchTerm || 
+                product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                product.description.toLowerCase().includes(searchTerm.toLowerCase())
+              )
+              .slice(0, 9)
+              .map((produto) => (
+                <motion.div
+                  key={produto.id}
+                  layout
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white dark:bg-dark-secondary rounded-2xl p-4 sm:p-6 shadow-soft-xl hover:shadow-2xl transition-shadow"
+                >
+                  <div className="relative group">
+                    <div className="w-full aspect-square rounded-xl mb-4 sm:mb-6 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-dark-accent dark:to-dark-primary flex items-center justify-center overflow-hidden">
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <FaShoppingCart className="text-4xl sm:text-6xl text-primary-600 dark:text-primary-400 transition-transform" />
+                      </motion.div>
+                    </div>
+                    <motion.button
                       whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={(e) => handleFavoriteClick(produto, e)}
+                      className={`absolute top-2 right-2 sm:top-4 sm:right-4 p-2 sm:p-3 rounded-full shadow-soft ${
+                        isFavorite(produto.id)
+                          ? 'bg-red-500 text-white'
+                          : 'bg-white dark:bg-dark-accent text-gray-400 hover:text-red-500'
+                      }`}
                     >
-                      <FaShoppingCart className="text-4xl sm:text-6xl text-primary-600 dark:text-primary-400 transition-transform" />
-                    </motion.div>
+                      <FaHeart className="text-base sm:text-xl" />
+                    </motion.button>
                   </div>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={(e) => handleFavoriteClick(produto, e)}
-                    className={`absolute top-2 right-2 sm:top-4 sm:right-4 p-2 sm:p-3 rounded-full shadow-soft ${
-                      isFavorite(produto.id)
-                        ? 'bg-red-500 text-white'
-                        : 'bg-white dark:bg-dark-accent text-gray-400 hover:text-red-500'
-                    }`}
-                  >
-                    <FaHeart className="text-base sm:text-xl" />
-                  </motion.button>
-                </div>
 
-                <div className="flex justify-between items-start mb-3 sm:mb-4">
-                  <div>
-                    <h3 className="text-base sm:text-xl font-bold text-gray-800 dark:text-dark-text mb-1 sm:mb-2 line-clamp-2">{produto.name}</h3>
-                    <p className="text-lg sm:text-2xl font-bold text-primary-600 dark:text-primary-400">
-                      R$ {produto.price.toFixed(2)}
-                    </p>
+                  <div className="flex justify-between items-start mb-3 sm:mb-4">
+                    <div>
+                      <h3 className="text-base sm:text-xl font-bold text-gray-800 dark:text-dark-text mb-1 sm:mb-2 line-clamp-2">{produto.name}</h3>
+                      <p className="text-lg sm:text-2xl font-bold text-primary-600 dark:text-primary-400">
+                        R$ {produto.price.toFixed(2)}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <FaStar className="text-yellow-400" />
+                      <span className="text-sm sm:text-base text-gray-600 dark:text-dark-text font-medium">{produto.rating}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <FaStar className="text-yellow-400" />
-                    <span className="text-sm sm:text-base text-gray-600 dark:text-dark-text font-medium">{produto.rating}</span>
+
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 line-clamp-2">{produto.description}</p>
+
+                  <div className="flex gap-2 sm:gap-4">
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setSelectedProduct(produto)}
+                      className="flex-1 py-2 sm:py-3 bg-primary-600 dark:bg-primary-500 text-white rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-primary-700 dark:hover:bg-primary-600 transition-colors text-sm sm:text-base"
+                    >
+                      <span className="hidden sm:inline">Ver Detalhes</span>
+                      <span className="sm:hidden">Detalhes</span>
+                      <FaArrowRight className="text-sm sm:text-base" />
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => addToCart(produto)}
+                      className="p-2 sm:px-4 sm:py-3 border-2 border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400 rounded-xl font-semibold hover:bg-primary-50 dark:hover:bg-dark-accent transition-colors"
+                    >
+                      <FaShoppingCart className="text-sm sm:text-base" />
+                    </motion.button>
                   </div>
-                </div>
-
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 line-clamp-2">{produto.description}</p>
-
-                <div className="flex gap-2 sm:gap-4">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setSelectedProduct(produto)}
-                    className="flex-1 py-2 sm:py-3 bg-primary-600 dark:bg-primary-500 text-white rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-primary-700 dark:hover:bg-primary-600 transition-colors text-sm sm:text-base"
-                  >
-                    <span className="hidden sm:inline">Ver Detalhes</span>
-                    <span className="sm:hidden">Detalhes</span>
-                    <FaArrowRight className="text-sm sm:text-base" />
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => addToCart(produto)}
-                    className="p-2 sm:px-4 sm:py-3 border-2 border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400 rounded-xl font-semibold hover:bg-primary-50 dark:hover:bg-dark-accent transition-colors"
-                  >
-                    <FaShoppingCart className="text-sm sm:text-base" />
-                  </motion.button>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
           </motion.div>
 
           <motion.div
@@ -308,7 +315,6 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={scrollToProducts}
                 className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-semibold flex items-center gap-2 hover:bg-white/10 transition-colors text-lg"
               >
                 Ver Produtos
