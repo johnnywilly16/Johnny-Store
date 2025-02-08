@@ -9,9 +9,17 @@ type CartItem = {
   quantity: number
 }
 
+type Product = {
+  id: number
+  name: string
+  price: number
+  description: string
+  rating: number
+}
+
 type CartContextType = {
   items: CartItem[]
-  addToCart: (product: { id: number; name: string; price: number }) => void
+  addToCart: (product: Product) => void
   removeFromCart: (productId: number) => void
   updateQuantity: (productId: number, quantity: number) => void
   clearCart: () => void
@@ -37,7 +45,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('cart', JSON.stringify(items))
   }, [items])
 
-  const addToCart = (product: { id: number; name: string; price: number }) => {
+  const addToCart = (product: Product) => {
     setItems(currentItems => {
       const existingItem = currentItems.find(item => item.id === product.id)
       

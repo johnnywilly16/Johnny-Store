@@ -13,8 +13,6 @@ type Product = {
   price: number
   description: string
   rating: number
-  category: string
-  image: string
 }
 
 type FavoritesDrawerProps = {
