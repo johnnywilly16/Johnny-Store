@@ -329,28 +329,28 @@ export default function Home() {
               transition={{ delay: 0.4 }}
               className="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-center"
             >
-              <div className="bg-white/10 backdrop-blur rounded-xl p-4 sm:p-6">
+              <div className="bg-white dark:bg-dark-secondary rounded-xl p-4 sm:p-6">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <FaShoppingBag className="text-white text-lg sm:text-xl" />
                 </div>
-                <h3 className="text-white font-semibold mb-2 text-base sm:text-lg">Produtos Premium</h3>
-                <p className="text-white/90 text-sm">Seleção exclusiva de produtos de alta qualidade</p>
+                <h3 className="text-primary-600 dark:text-primary-400 font-semibold mb-2 text-base sm:text-lg">Produtos Premium</h3>
+                <p className="text-primary-500/90 dark:text-primary-400/90 text-sm">Seleção exclusiva de produtos de alta qualidade</p>
               </div>
               
-              <div className="bg-white/10 backdrop-blur rounded-xl p-4 sm:p-6">
+              <div className="bg-white dark:bg-dark-secondary rounded-xl p-4 sm:p-6">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-secondary-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <FaTruck className="text-white text-lg sm:text-xl" />
                 </div>
-                <h3 className="text-white font-semibold mb-2 text-base sm:text-lg">Entrega Rápida</h3>
-                <p className="text-white/90 text-sm">Envio expresso para todo o Brasil</p>
+                <h3 className="text-primary-600 dark:text-primary-400 font-semibold mb-2 text-base sm:text-lg">Entrega Rápida</h3>
+                <p className="text-primary-500/90 dark:text-primary-400/90 text-sm">Envio expresso para todo o Brasil</p>
               </div>
               
-              <div className="bg-white/10 backdrop-blur rounded-xl p-4 sm:p-6">
+              <div className="bg-white dark:bg-dark-secondary rounded-xl p-4 sm:p-6">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-700 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <FaHeart className="text-white text-lg sm:text-xl" />
                 </div>
-                <h3 className="text-white font-semibold mb-2 text-base sm:text-lg">Satisfação Garantida</h3>
-                <p className="text-white/90 text-sm">Qualidade e atendimento excepcional</p>
+                <h3 className="text-primary-600 dark:text-primary-400 font-semibold mb-2 text-base sm:text-lg">Satisfação Garantida</h3>
+                <p className="text-primary-500/90 dark:text-primary-400/90 text-sm">Qualidade e atendimento excepcional</p>
               </div>
             </motion.div>
           </div>
