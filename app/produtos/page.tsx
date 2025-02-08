@@ -43,7 +43,6 @@ export default function Produtos() {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-dark-primary pt-24 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-secondary-500 bg-clip-text text-transparent">
             Nossos Produtos
@@ -53,9 +52,7 @@ export default function Produtos() {
           </p>
         </div>
 
-        {/* Filters */}
         <div className="mb-12 space-y-6">
-          {/* Search */}
           <div className="max-w-xl mx-auto">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -71,7 +68,6 @@ export default function Produtos() {
             </div>
           </div>
 
-          {/* Categories */}
           <div className="flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
               <motion.button
@@ -91,7 +87,6 @@ export default function Produtos() {
           </div>
         </div>
 
-        {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredProducts.map((produto) => (
             <motion.div
@@ -170,7 +165,6 @@ export default function Produtos() {
           ))}
         </div>
 
-        {/* Empty State */}
         {filteredProducts.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-500 dark:text-gray-400 text-lg">
@@ -180,7 +174,6 @@ export default function Produtos() {
         )}
       </div>
 
-      {/* Product Modal */}
       {selectedProduct && (
         <ProductModal
           isOpen={!!selectedProduct}
