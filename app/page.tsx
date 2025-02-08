@@ -65,7 +65,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-dark-primary">
-      {/* Hero Section */}
       <section ref={ref} className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden px-4 py-12 sm:py-0">
         <Particles />
         <div className="absolute inset-0 bg-gradient-radial from-primary-500/20 to-transparent dark:from-primary-900/20" />
@@ -118,7 +117,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Products Section */}
       <section id="products" className="py-12 sm:py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -264,7 +262,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="relative py-24 sm:py-32 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-conic from-primary-600 via-secondary-500 to-primary-600 opacity-90 animate-gradient" />
         <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10" />
@@ -357,7 +354,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Product Modal */}
       {selectedProduct && (
         <ProductModal
           isOpen={!!selectedProduct}
