@@ -300,7 +300,7 @@ export default function Home() {
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.2)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-primary-600 rounded-full font-semibold flex items-center gap-2 hover:bg-gray-50 transition-colors shadow-xl text-base sm:text-lg"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white dark:bg-dark-secondary text-primary-600 dark:text-white rounded-full font-semibold flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-dark-accent transition-colors shadow-xl text-base sm:text-lg"
                 >
                   Entre em Contato
                   <motion.div
