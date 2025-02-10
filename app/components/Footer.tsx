@@ -30,7 +30,6 @@ export default function Footer() {
 
   return (
     <footer className="bg-white dark:bg-dark-secondary relative overflow-hidden">
-      {/* Decorative Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary-50 dark:to-dark-accent/20 pointer-events-none" />
       <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
 
@@ -42,7 +41,6 @@ export default function Footer() {
         className="max-w-7xl mx-auto px-4 py-12 sm:py-16 relative z-10"
       >
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12">
-          {/* Brand Column */}
           <motion.div variants={itemVariants} className="space-y-4">
             <Link href="/">
               <h2 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-500 bg-clip-text text-transparent">
@@ -88,7 +86,6 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Links Column */}
           <motion.div variants={itemVariants} className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-800 dark:text-dark-text">Links Rápidos</h3>
             <ul className="space-y-2">
@@ -106,7 +103,6 @@ export default function Footer() {
             </ul>
           </motion.div>
 
-          {/* Categories Column */}
           <motion.div variants={itemVariants} className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-800 dark:text-dark-text">Categorias</h3>
             <ul className="space-y-2">
@@ -124,7 +120,6 @@ export default function Footer() {
             </ul>
           </motion.div>
 
-          {/* Contact Column */}
           <motion.div variants={itemVariants} className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-800 dark:text-dark-text">Contato</h3>
             <ul className="space-y-3">
@@ -144,7 +139,6 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        {/* Bottom Bar */}
         <motion.div
           variants={itemVariants}
           className="mt-12 pt-8 border-t border-gray-200 dark:border-dark-accent flex flex-col sm:flex-row justify-between items-center gap-4"
@@ -159,4 +153,4 @@ export default function Footer() {
       </motion.div>
     </footer>
   )
-} 
+}
