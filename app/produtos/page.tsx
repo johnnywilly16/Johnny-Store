@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useState, useMemo } from 'react'
-import { FaSearch, FaStar, FaHeart, FaShoppingCart, FaArrowRight } from 'react-icons/fa'
+import { FaSearch, FaStar, FaHeart, FaShoppingCart, FaArrowRight, FaCheck } from 'react-icons/fa'
 import { products, categories } from '../data/products'
 import { useCart } from '../contexts/CartContext'
 import { useFavorites } from '../contexts/FavoritesContext'
@@ -12,6 +12,7 @@ export default function Produtos() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('Todos')
   const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null)
+  const [addedToCart, setAddedToCart] = useState<{[key: number]: boolean}>({})
   const { addToCart } = useCart()
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites()
 
@@ -155,10 +156,30 @@ export default function Produtos() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => addToCart(produto)}
-                  className="p-2 border-2 border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400 rounded-xl font-semibold hover:bg-primary-50 dark:hover:bg-dark-accent transition-colors"
+                  onClick={() => {
+                    addToCart(produto)
+                    setAddedToCart(prev => ({ ...prev, [produto.id]: true }))
+                    setTimeout(() => {
+                      setAddedToCart(prev => ({ ...prev, [produto.id]: false }))
+                    }, 2000)
+                  }}
+                  className={`p-2 border-2 rounded-xl font-semibold transition-all duration-300 ${
+                    addedToCart[produto.id]
+                      ? 'bg-green-500 border-green-500 text-white'
+                      : 'border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-dark-accent'
+                  }`}
                 >
-                  <FaShoppingCart className="text-sm" />
+                  {addedToCart[produto.id] ? (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <FaCheck className="text-sm" />
+                    </motion.div>
+                  ) : (
+                    <FaShoppingCart className="text-sm" />
+                  )}
                 </motion.button>
               </div>
             </motion.div>
