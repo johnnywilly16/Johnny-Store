@@ -128,7 +128,7 @@ export default function Produtos() {
                     {produto.name}
                   </h3>
                   <p className="text-lg font-bold text-primary-600 dark:text-primary-400">
-                    R$ {produto.price.toFixed(2)}
+                    R$ {produto.price.toFixed(2).replace('.', ',')}
                   </p>
                 </div>
                 <div className="flex items-center gap-1">

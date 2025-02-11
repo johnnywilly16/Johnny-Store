@@ -155,7 +155,7 @@ export default function ProductModal({ isOpen, onClose, product }: ProductModalP
 
                       <div className="bg-primary-50 dark:bg-dark-accent rounded-xl p-4 mb-4 sm:mb-6">
                         <p className="text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-400">
-                          R$ {product.price.toFixed(2)}
+                          R$ {product.price.toFixed(2).replace('.', ',')}
                         </p>
                         <p className="text-xs sm:text-sm text-primary-600/70 dark:text-primary-400/70 mt-1">
                           Em até 12x sem juros
