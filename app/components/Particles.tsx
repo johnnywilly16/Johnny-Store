@@ -44,7 +44,7 @@ export default function Particles() {
   }, [])
 
   return (
-    <div className="fixed inset-0 pointer-events-none">
+    <div className="fixed inset-0 pointer-events-none z-0">
       {particles.map((particle) => (
         <motion.div
           key={particle.id}

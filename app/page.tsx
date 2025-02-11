@@ -68,12 +68,12 @@ export default function Home() {
     <main className="min-h-screen bg-gray-50 dark:bg-dark-primary">
       <section ref={ref} className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden px-4 py-12 sm:py-0">
         <Particles />
-        <div className="absolute inset-0 bg-gradient-radial from-primary-500/20 to-transparent dark:from-primary-900/20" />
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+        <div className="absolute inset-0 bg-gradient-radial from-primary-500/20 to-transparent dark:from-primary-900/20 z-0" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 z-0" />
         
         <motion.div 
           style={{ y, opacity }}
-          className="relative z-10 text-center"
+          className="relative z-20 text-center"
         >
           <motion.h1 
             initial={{ y: -50, opacity: 0 }}
@@ -164,7 +164,7 @@ export default function Home() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8"
+            className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 relative z-20"
           >
             {products
               .filter(product => 
@@ -181,7 +181,7 @@ export default function Home() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white dark:bg-dark-secondary rounded-2xl p-4 sm:p-6 shadow-soft-xl hover:shadow-2xl transition-shadow"
+                  className="bg-white dark:bg-dark-secondary rounded-2xl p-4 sm:p-6 shadow-soft-xl hover:shadow-2xl transition-shadow relative z-10"
                 >
                   <div className="relative group">
                     <div className="w-full aspect-square rounded-xl mb-4 sm:mb-6 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-dark-accent dark:to-dark-primary flex items-center justify-center overflow-hidden">
@@ -371,7 +371,7 @@ export default function Home() {
                 <p className="text-primary-500/90 dark:text-primary-400/90 text-sm">Qualidade e atendimento excepcional</p>
               </div>
             </motion.div>
-          </div>
+    </div>
         </motion.div>
       </section>
 
