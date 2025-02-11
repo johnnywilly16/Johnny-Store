@@ -48,15 +48,6 @@ export default function FavoritesDrawer({ isOpen, onClose }: FavoritesDrawerProp
       {isOpen && (
         <>
           <motion.div
-            key="drawer-backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
-            onClick={onClose}
-          />
-          <motion.div
             key="drawer-content"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -67,7 +58,7 @@ export default function FavoritesDrawer({ isOpen, onClose }: FavoritesDrawerProp
             }}
             className="fixed top-28 sm:top-24 right-2 sm:right-4 w-[calc(100%-1rem)] sm:w-full max-w-[calc(100%-2rem)] sm:max-w-md bg-white dark:bg-dark-secondary rounded-2xl shadow-2xl z-50 overflow-hidden border border-gray-100 dark:border-dark-accent mx-2 sm:mx-0"
           >
-            <div className="p-3 sm:p-4 border-b dark:border-dark-accent flex justify-between items-center bg-gray-50/80 dark:bg-dark-accent/80 backdrop-blur-sm">
+            <div className="p-3 sm:p-4 border-b dark:border-dark-accent flex justify-between items-center bg-gray-50/80 dark:bg-dark-accent/80">
               <div className="flex items-center gap-2">
                 <FaHeart className="text-red-500" />
                 <h2 className="text-base sm:text-lg font-bold text-gray-800 dark:text-dark-text">
@@ -95,52 +86,57 @@ export default function FavoritesDrawer({ isOpen, onClose }: FavoritesDrawerProp
                 </div>
               ) : (
                 <div className="p-4 sm:p-6 space-y-4 sm:space-y-4">
-                  {favorites.map((product) => (
-                    <motion.div
-                      key={product.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.2 }}
-                      className="bg-white dark:bg-dark-accent rounded-xl p-4 sm:p-4 flex gap-4 sm:gap-4 shadow-md"
-                    >
-                      <div className="w-20 sm:w-20 h-20 sm:h-20 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-dark-accent dark:to-dark-primary rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm">
-                        <FaShoppingCart className="text-2xl sm:text-2xl text-primary-600 dark:text-primary-400" />
-                      </div>
+                  <AnimatePresence>
+                    {favorites.map((product, index) => (
+                      <motion.div
+                        key={product.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="bg-white dark:bg-dark-accent rounded-xl p-4 sm:p-4 flex gap-4 sm:gap-4 shadow-md"
+                      >
+                        <motion.div 
+                          whileHover={{ scale: 1.05 }}
+                          className="w-20 sm:w-20 h-20 sm:h-20 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-dark-accent dark:to-dark-primary rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm"
+                        >
+                          <FaShoppingCart className="text-2xl sm:text-2xl text-primary-600 dark:text-primary-400" />
+                        </motion.div>
 
-                      <div className="flex-1 min-w-0 space-y-2">
-                        <h3 className="font-bold text-base sm:text-base text-gray-800 dark:text-white truncate">
-                          {product.name}
-                        </h3>
-                        <p className="text-sm sm:text-sm text-gray-600 dark:text-gray-300 line-clamp-1">
-                          {product.description}
-                        </p>
-                        <div className="flex items-center justify-between pt-1">
-                          <span className="text-base sm:text-base text-primary-600 dark:text-primary-400 font-bold">
-                            R$ {product.price.toFixed(2)}
-                          </span>
-                          <div className="flex gap-3">
-                            <motion.button
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                              onClick={() => handleAddToCart(product)}
-                              className="p-2 sm:p-2 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-200 dark:hover:bg-primary-900/50 transition-colors"
-                            >
-                              <FaShoppingCart className="text-sm sm:text-sm" />
-                            </motion.button>
-                            <motion.button
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                              onClick={() => handleRemoveFromFavorites(product.id)}
-                              className="p-2 sm:p-2 bg-red-100 dark:bg-red-900/30 text-red-500 dark:text-red-400 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors"
-                            >
-                              <FaTrash className="text-sm sm:text-sm" />
-                            </motion.button>
+                        <div className="flex-1 min-w-0 space-y-2">
+                          <h3 className="font-bold text-base sm:text-base text-gray-800 dark:text-white truncate">
+                            {product.name}
+                          </h3>
+                          <p className="text-sm sm:text-sm text-gray-600 dark:text-gray-300 line-clamp-1">
+                            {product.description}
+                          </p>
+                          <div className="flex items-center justify-between pt-1">
+                            <span className="text-base sm:text-base text-primary-600 dark:text-primary-400 font-bold">
+                              R$ {product.price.toFixed(2).replace('.', ',')}
+                            </span>
+                            <div className="flex gap-3">
+                              <motion.button
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={() => handleAddToCart(product)}
+                                className="p-2 sm:p-2 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-200 dark:hover:bg-primary-900/50 transition-colors"
+                              >
+                                <FaShoppingCart className="text-sm sm:text-sm" />
+                              </motion.button>
+                              <motion.button
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={() => handleRemoveFromFavorites(product.id)}
+                                className="p-2 sm:p-2 bg-red-100 dark:bg-red-900/30 text-red-500 dark:text-red-400 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors"
+                              >
+                                <FaTrash className="text-sm sm:text-sm" />
+                              </motion.button>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </motion.div>
-                  ))}
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
                 </div>
               )}
             </div>

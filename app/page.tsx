@@ -210,7 +210,7 @@ export default function Home() {
                     <div>
                       <h3 className="text-base sm:text-xl font-bold text-gray-800 dark:text-dark-text mb-1 sm:mb-2 line-clamp-2">{produto.name}</h3>
                       <p className="text-lg sm:text-2xl font-bold text-primary-600 dark:text-primary-400">
-                        R$ {produto.price.toFixed(2)}
+                        R$ {produto.price.toFixed(2).replace('.', ',')}
                       </p>
                     </div>
                     <div className="flex items-center gap-1">
