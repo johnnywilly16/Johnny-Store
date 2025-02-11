@@ -51,7 +51,6 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             transition={{ duration: 0.2 }}
             className="fixed top-28 sm:top-24 right-2 sm:right-4 w-[calc(100%-1rem)] sm:w-full max-w-[calc(100%-2rem)] sm:max-w-md bg-white dark:bg-dark-secondary rounded-2xl shadow-2xl z-50 overflow-hidden border border-gray-100 dark:border-dark-accent mx-2 sm:mx-0"
           >
-            {/* Header */}
             <div className="p-3 sm:p-4 border-b dark:border-dark-accent flex justify-between items-center bg-gray-50/80 dark:bg-dark-accent/80 backdrop-blur-sm">
               <h2 className="text-base sm:text-lg font-bold text-gray-800 dark:text-dark-text">
                 Carrinho ({items.length})
@@ -64,7 +63,6 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               </button>
             </div>
 
-            {/* Content */}
             <div className="max-h-[calc(100vh-16rem)] sm:max-h-[calc(100vh-14rem)] overflow-y-auto p-4">
               {items.length === 0 ? (
                 <p className="text-center text-sm sm:text-base text-gray-500 dark:text-gray-400">
@@ -144,4 +142,4 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       )}
     </AnimatePresence>
   )
-} 
+}
