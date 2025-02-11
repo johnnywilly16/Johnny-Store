@@ -44,21 +44,27 @@ export default function FavoritesDrawer({ isOpen, onClose }: FavoritesDrawerProp
   }
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
         <>
           <motion.div
+            key="drawer-backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/20 z-40"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
             onClick={onClose}
           />
           <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.95, opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            key="drawer-content"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ 
+              duration: 0.3,
+              ease: [0.32, 0.72, 0, 1]
+            }}
             className="fixed top-28 sm:top-24 right-2 sm:right-4 w-[calc(100%-1rem)] sm:w-full max-w-[calc(100%-2rem)] sm:max-w-md bg-white dark:bg-dark-secondary rounded-2xl shadow-2xl z-50 overflow-hidden border border-gray-100 dark:border-dark-accent mx-2 sm:mx-0"
           >
             <div className="p-3 sm:p-4 border-b dark:border-dark-accent flex justify-between items-center bg-gray-50/80 dark:bg-dark-accent/80 backdrop-blur-sm">
@@ -90,8 +96,12 @@ export default function FavoritesDrawer({ isOpen, onClose }: FavoritesDrawerProp
               ) : (
                 <div className="p-4 sm:p-6 space-y-4 sm:space-y-4">
                   {favorites.map((product) => (
-                    <div
+                    <motion.div
                       key={product.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.2 }}
                       className="bg-white dark:bg-dark-accent rounded-xl p-4 sm:p-4 flex gap-4 sm:gap-4 shadow-md"
                     >
                       <div className="w-20 sm:w-20 h-20 sm:h-20 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-dark-accent dark:to-dark-primary rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm">
@@ -129,7 +139,7 @@ export default function FavoritesDrawer({ isOpen, onClose }: FavoritesDrawerProp
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               )}
