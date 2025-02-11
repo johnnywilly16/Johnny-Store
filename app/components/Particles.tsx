@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { useTheme } from 'next-themes'
 
 type Particle = {
   id: number
@@ -14,6 +15,7 @@ type Particle = {
 
 export default function Particles() {
   const [particles, setParticles] = useState<Particle[]>([])
+  const { theme } = useTheme()
 
   useEffect(() => {
     const generateParticles = () => {
@@ -33,7 +35,6 @@ export default function Particles() {
 
     generateParticles()
 
-    // Regenerar partículas quando a janela for redimensionada
     const handleResize = () => {
       generateParticles()
     }
@@ -47,7 +48,11 @@ export default function Particles() {
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
-          className="absolute bg-white dark:bg-white/30 rounded-full"
+          className={`absolute rounded-full ${
+            theme === 'dark' 
+              ? 'bg-white/30'
+              : 'bg-primary-800/40'
+          }`}
           style={{
             width: particle.size,
             height: particle.size,
@@ -56,7 +61,7 @@ export default function Particles() {
           }}
           animate={{
             y: [0, -100, 0],
-            opacity: [0, 0.8, 0],
+            opacity: [0, 1, 0],
           }}
           transition={{
             duration: particle.duration,
